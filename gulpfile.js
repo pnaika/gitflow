@@ -66,10 +66,10 @@ gulp.task('commit-message', shell.task([
     ])
 );
 
-gulp.task('update-changelog', shell.task([
-        'up changelog --cl.from '+ argv.sha
-    ])
-);
+//gulp.task('update-changelog', shell.task([
+//        'up changelog --cl.from '+ argv.sha
+//    ])
+//);
 
 gulp.task('commit-message-changelog', shell.task([
         'git commit -m "docs(CHANGELOG):'+ argv.version +'"'
@@ -102,9 +102,9 @@ gulp.task('tag', function() {
             'status',
             'add',
             'commit-message',
-            'update-changelog',
-            'add',
-            'commit-message-changelog',
+            //'update-changelog',
+            //'add',
+            //'commit-message-changelog',
             'flow-release-finish',
             'push-develop',
             'push-version',
