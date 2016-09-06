@@ -1,6 +1,6 @@
 {
   "name": "git-flow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "gulp task to execute git related commands",
   "main": "index.js",
   "scripts": {
