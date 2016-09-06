@@ -8,6 +8,7 @@ var runSequence = require('run-sequence');
 var argv = require('yargs')
     .demand(['version','sha'])
     .argv;
+var bump = require('gulp-bump');
 
 gulp.task('status', shell.task([
         'git status'
@@ -65,10 +66,10 @@ gulp.task('commit-message', shell.task([
     ])
 );
 
-gulp.task('update-changelog', shell.task([
-        'up changelog --cl.from '+ argv.sha
-    ])
-);
+//gulp.task('update-changelog', shell.task([
+//        'up changelog --cl.from '+ argv.sha
+//    ])
+//);
 
 gulp.task('commit-message-changelog', shell.task([
         'git commit -m "docs(CHANGELOG):'+ argv.version +'"'
@@ -79,6 +80,12 @@ gulp.task('flow-release-finish', shell.task([
         'git flow release finish '+ argv.version
     ])
 );
+
+gulp.task('bump', function(){
+    gulp.src('./package.json')
+        .pipe(bump({version: argv.version}))
+        .pipe(gulp.dest('./'));
+});
 
 
 gulp.task('tag', function() {
@@ -91,12 +98,13 @@ gulp.task('tag', function() {
             'checkout-develop',
             'pull',
             'flow-release-start',
-            'add',
+            'bump',
             'status',
-            'commit-message',
-            'update-changelog',
             'add',
-            'commit-message-changelog',
+            'commit-message',
+            //'update-changelog',
+            //'add',
+            //'commit-message-changelog',
             'flow-release-finish',
             'push-develop',
             'push-version',
