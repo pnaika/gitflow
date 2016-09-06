@@ -19,6 +19,7 @@
   "dependencies": {
     "browser-sync": "^2.11.2",
     "gulp": "^3.9.1",
+    "gulp-bump": "^2.4.0",
     "gulp-shell": "^0.5.2",
     "run-sequence": "^1.2.2",
     "yargs": "^5.0.0"

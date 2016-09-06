@@ -8,6 +8,7 @@ var runSequence = require('run-sequence');
 var argv = require('yargs')
     .demand(['version','sha'])
     .argv;
+var bump = require('gulp-bump');
 
 gulp.task('status', shell.task([
         'git status'
@@ -80,6 +81,12 @@ gulp.task('flow-release-finish', shell.task([
     ])
 );
 
+gulp.task('bump', function(){
+    gulp.src('./*.json')
+        .pipe(bump({version: argv.version}))
+        .pipe(gulp.dest('./'));
+});
+
 
 gulp.task('tag', function() {
     argv.version === undefined || argv.sha === undefined?
@@ -91,6 +98,7 @@ gulp.task('tag', function() {
             'checkout-develop',
             'pull',
             'flow-release-start',
+            'bump',
             'add',
             'status',
             'commit-message',
