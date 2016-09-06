@@ -82,7 +82,7 @@ gulp.task('flow-release-finish', shell.task([
 );
 
 gulp.task('bump', function(){
-    gulp.src('./*.json')
+    gulp.src('./package.json')
         .pipe(bump({version: argv.version}))
         .pipe(gulp.dest('./'));
 });
