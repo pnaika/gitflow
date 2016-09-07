@@ -105,9 +105,9 @@ gulp.task('tag', function() {
             //'update-changelog',
             //'add',
             //'commit-message-changelog',
-            'flow-release-finish',
-            'push-develop',
-            'push-version',
-            'push-master'
+            'flow-release-finish'
+            //'push-develop',
+            //'push-version',
+            //'push-master'
         );
 });
